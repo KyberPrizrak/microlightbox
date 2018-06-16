@@ -7,7 +7,7 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
 
 ## Demo
 
-* [microlightbox demo](http://kyberprizrak.ru/microlightbox/test.html)
+* [microlightbox demo](http://kyberprizrak.ru/microlightbox/demo.html)
 
 ## Quick start
 
