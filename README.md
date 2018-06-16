@@ -1,6 +1,10 @@
 # microlightbox
 Small lightbox + html popup. Pure JavaScript + CSS. No dependencies!
 
+## Browser support
+
+microlightbox supports all major browsers including Internet Explorer 8 and above
+
 ## Demo
 
 * [microlightbox demo](http://kyberprizrak.ru/microlightbox/test.html)
