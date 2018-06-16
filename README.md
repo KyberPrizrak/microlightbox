@@ -8,7 +8,7 @@ Small lightbox + html popup. Pure JavaScript + CSS. No dependencies!
 ## Quick start
 
 1) Copy *microlightbox.css* and *microlightbox.min.js*
-2) Add in <head>:
+2) Add to &lt;head&gt;:
 
 ```html
 <head>
