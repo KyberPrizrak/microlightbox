@@ -42,9 +42,9 @@
     <img src="img/1.jpg" onclick='microlightbox(this);' width="50" style="vertical-align:bottom;cursor:pointer;"><br>
 
     <a id="apic10" href="img/1.jpg">pic 1600x1066, titlebar</a><br>
-    <a id="apic11" href="img/1.jpg">pic 1600x1066, no title</a><br>
+    <a class="microlightbox" href="img/1.jpg">pic 1600x1066, no title</a><br>
     <a id="apic12" href="img/2.jpg">pic 480x315, titlebar</a><br>
-    <a id="apic13" href="img/2.jpg">pic 480x315, no title</a><br>
+    <a class="microlightbox" href="img/2.jpg">pic 480x315, no title</a><br>
     <a id="apic14" href="img/2.jpg">pic 480x315, long title</a><br>
     <a id="apic15" href="img/error.jpg">pic: bad src</a>
 
@@ -64,11 +64,10 @@
       microlightbox(document.getElementById("inline4"), {title:"Title Title Title", titlePosition:'inside', minWidth:600});
 
       microlightbox(document.getElementById("apic10"), {title:"Title Title Title", titlePosition:'titlebar'});
-      microlightbox(document.getElementById("apic11"), {});
       microlightbox("#apic12", {title:"Title Title Title", titlePosition:'titlebar'});
-      microlightbox("#apic13", {});
       microlightbox("#apic14", {title:str_repeat("Title ", 20), minWidth2:500});
       microlightbox("#apic15");
+      microlightbox(".microlightbox");
     </script>
   </body>
 </html>

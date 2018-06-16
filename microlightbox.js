@@ -21,7 +21,7 @@
  * along with microlightbox. If not, see <http://www.gnu.org/licenses/>.
  *
  * @author KyberPrizrak (www.kyberprizrak.ru)
- * @version 1.0.0 - 2018.06.16 19:49:00 GMT+3
+ * @version 1.0.1 - 2018.06.17 00:29:00 GMT+3
  */
 (function() {
 
@@ -130,7 +130,8 @@
  *  d) любой другой тег - будет открыт во всплывашке.
  * 2) строка:
  *  a) начинающаяся с символа "#" - id DOM-елемента. Поведение функции аналогично передаче DOM-елемента с указанным ID.
- *  b) в других случаях - воспринимается как HTML-код, который должен быть отображен во всплывашке.
+ *  b) начинающаяся с символа "." - название класса. Поведение функции аналогично вызову функции для каждого DOM-елемента.
+ *  c) в других случаях - воспринимается как HTML-код, который должен быть отображен во всплывашке.
  * opt - объект, который может содержать следующие свойства:
  * type (string, 'auto') - Декларирует тип содержимого. Может принмать значения: 'auto', 'image', 'html' или 'inline'. Если 'auto' - определить автоматически.
  * title (string, '') - Строка, содержащая заловок всплывающиего окна;
@@ -148,9 +149,24 @@
  **/
  function microlightbox(elm, opt)
  {
+   if(!elm) {return;}
+
    if((typeof(elm) === 'string') && (elm.substr(0, 1) == '#'))
    {
      elm = document.getElementById(elm.substr(1));
+   }
+   else if((typeof(elm) === 'string') && (elm.substr(0, 1) == '.'))
+   {
+     var elements;
+     try{
+       elements = document.getElementsByClassName(elm.substr(1));
+     }catch(e){elements = document.querySelectorAll(elm);}
+
+     for(var i = 0; i < elements.length; i++)
+     {
+       microlightbox(elements[i], opt);
+     }
+     return;
    }
 
    if((typeof(elm) === 'object') && (elm.tagName == 'A'))
