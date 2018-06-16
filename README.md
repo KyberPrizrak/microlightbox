@@ -25,10 +25,13 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
 3) call microlightbox:
 ```js
 <script>
-    microlightbox("#linkid");
+    microlightbox(".microlightbox");
 </script>
 ```
-*linkid* - &lt;a id="linkid" href="..."&gt;
+4) add class "microlightbox" to &lt;a&gt;:
+```html
+ <a class="microlightbox" href="...">
+```
 
 ## API & Options
 
@@ -45,6 +48,7 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
    * любой другой тег - будет открыт во всплывашке.
 2. string:
    * начинающаяся с символа "#" - id DOM-елемента. Поведение функции аналогично передаче DOM-елемента с указанным ID.
+   * начинающаяся с символа "." - название класса. Поведение функции аналогично вызову функции для каждого DOM-елемента с этим классом.
    * в других случаях - воспринимается как HTML-код, который должен быть отображен во всплывашке.
 
 **opt**: {optionname1:value[, optionname2:value2]}
@@ -61,7 +65,7 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
 | minHeight     | integer | 100               | Минимальная высота контейнера microlightbox. |
 | maxWidth      | integer | 0                 | Максимальная ширина контейнера microlightbox. Если 0 - игнорировать. |
 | maxHeight     | integer | 0                 | Максимальная высота контейнера microlightbox. Если 0 - игнорировать. |
-| overlayColor  | string  | 'rgba(0,0,0,0.7)' | Цвет фонового затемнения (значение для obj_overlay.style.backgroundColor). |
+| overlayColor  | string  | 'rgba(0,0,0,0.7)' | Цвет фонового затемнения (значение для microlightbox_overlay.style.backgroundColor). |
 
  
  ## Examples
@@ -69,6 +73,7 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
  ```js
 <script>
     microlightbox("#id");
+    microlightbox(".classname");
     microlightbox(document.getElementById("id"), {title:"text"});
     microlightbox("#id", {title:"text", titlePosition:"titlebar", overlayColor:''});
     microlightbox("<b>html code</b>", {minWidth:200});    
