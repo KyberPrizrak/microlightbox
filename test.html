@@ -1,0 +1,74 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ru">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="ru">
+    <title>microlightbox</title>
+    <link rel="stylesheet" href="microlightbox.css" type="text/css">
+    <script src="microlightbox.min.js" type="text/javascript"></script>
+    <style>
+      * {
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      function str_repeat(str, n)
+      {
+        var res='';
+        for(var i=0;i<n;i++){res+=str;}
+        return res;
+      }
+
+      function go()
+      {
+        microlightbox(str_repeat("text ", 60) + str_repeat("<br>text", 40), {title:"Title Title Title", overlayColor: 'rgba(0,0,0,0.6)', minWidth:500});
+      }
+    </script>
+
+    <a id="apic1" href="img/1.jpg">pic 1600x1066</a><br>
+    <a id="apic2" href="img/2.jpg">pic 480x315</a><br>
+    <a id="apic3" href="img/3.jpg">pic 100x65</a><br>
+    <a id="apic4" href="img/4.jpg">pic 246x700</a><br>
+    <a id="apic5" href="img/5.jpg">pic 1600x417</a><br>
+    <a id="inline1" href="#html1">inline 1</a><br>
+    <a id="inline2" href="#html2">inline 2</a><br>
+    <a id="inline3" href="#html3">inline 3, move html: </a> [<span id="html3"><i>always</i> <u>displayed</u> html</span>]<br>
+    <a id="inline4" href="#html2">inline 4 (title bottom)</a><br>
+    <button onclick='microlightbox("html code (func param)");return false;'>open modal</button><br>
+    <button onclick='go();return false;'>open modal (long text)</button><br>
+
+    <img src="img/1.jpg" onclick='microlightbox(this);' width="50" style="vertical-align:bottom;cursor:pointer;"><br>
+
+    <a id="apic10" href="img/1.jpg">pic 1600x1066, titlebar</a><br>
+    <a id="apic11" href="img/1.jpg">pic 1600x1066, no title</a><br>
+    <a id="apic12" href="img/2.jpg">pic 480x315, titlebar</a><br>
+    <a id="apic13" href="img/2.jpg">pic 480x315, no title</a><br>
+    <a id="apic14" href="img/2.jpg">pic 480x315, long title</a><br>
+    <a id="apic15" href="img/error.jpg">pic: bad src</a>
+
+    <div id="html1" style="display:none">html code 1</div>
+    <div id="html2" style="display:none">html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code html code</div>
+    <br>
+
+    <script>
+      microlightbox(document.getElementById("apic1"), {title:"Title Title Title"});
+      microlightbox("#apic2", {title:"Title Title Title", titlePosition:'inside', overlayColor: 'rgba(0,0,0,0.2)'});
+      microlightbox(document.getElementById("apic3"), {title:"Title Title Title", overlayColor: 'rgba(0,255,0,0.5)'});
+      microlightbox(document.getElementById("apic4"), {title:"Title Title Title"});
+      microlightbox(document.getElementById("apic5"), {title:"Title Title Title"});
+      microlightbox(document.getElementById("inline1"));
+      microlightbox(document.getElementById("inline2"), {title:"Title Title Title", 'overlayColor':'', minWidth:500});
+      microlightbox(document.getElementById("inline3"), {title:"Title Title Title"});
+      microlightbox(document.getElementById("inline4"), {title:"Title Title Title", titlePosition:'inside', minWidth:600});
+
+      microlightbox(document.getElementById("apic10"), {title:"Title Title Title", titlePosition:'titlebar'});
+      microlightbox(document.getElementById("apic11"), {});
+      microlightbox("#apic12", {title:"Title Title Title", titlePosition:'titlebar'});
+      microlightbox("#apic13", {});
+      microlightbox("#apic14", {title:str_repeat("Title ", 20), minWidth2:500});
+      microlightbox("#apic15");
+    </script>
+  </body>
+</html>

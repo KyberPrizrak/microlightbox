@@ -1,0 +1,122 @@
+
+#microlightbox_spoof,
+#microlightbox_target,
+#microlightbox_image,
+#microlightbox_overlay,
+#microlightbox_window,
+#microlightbox_body,
+#microlightbox_content,
+#microlightbox_titlebar,
+#microlightbox_title,
+#microlightbox_close {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  display: block;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-family: Verdana, Arial, sans-serif;
+}
+
+#microlightbox_spoof {
+  /* JS: display */
+}
+
+#microlightbox_overlay {
+  /* JS: display, background-color, background-image */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+/*  background-image: url(loading.gif);*/
+  background-image: url(data:image/gif;base64,R0lGODlhKwALAPEAAP///wAAAIKCggAAACH5BAkKAAAAIf4aQ3JlYXRlZCB3aXRoIGFqYXhsb2FkLmluZm8AIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAKwALAAACMoSOCMuW2diD88UKG95W88uF4DaGWFmhZid93pq+pwxnLUnXh8ou+sSz+T64oCAyTBUAACH5BAkKAAAALAAAAAArAAsAAAI9xI4IyyAPYWOxmoTHrHzzmGHe94xkmJifyqFKQ0pwLLgHa82xrekkDrIBZRQab1jyfY7KTtPimixiUsevAAAh+QQJCgAAACwAAAAAKwALAAACPYSOCMswD2FjqZpqW9xv4g8KE7d54XmMpNSgqLoOpgvC60xjNonnyc7p+VKamKw1zDCMR8rp8pksYlKorgAAIfkECQoAAAAsAAAAACsACwAAAkCEjgjLltnYmJS6Bxt+sfq5ZUyoNJ9HHlEqdCfFrqn7DrE2m7Wdj/2y45FkQ13t5itKdshFExC8YCLOEBX6AhQAADs=);
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 1100;
+}
+
+#microlightbox_overlay > #microlightbox_close {
+  /* JS: left, top */
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #999999;
+  color: #ffffff;
+  border-radius: 14px;
+  height: 28px;
+  width: 28px;
+  font-size: 28px;
+  line-height: 28px;
+  font-weight: bold;
+  font-family: Arial, monospace;
+  text-align: center;
+  z-index: 1101;
+}
+
+#microlightbox_overlay > #microlightbox_close:hover,
+#microlightbox_overlay > #microlightbox_close:focus {
+  color: #ffffff;
+  background: #111111;
+  cursor: pointer;
+}
+
+#microlightbox_window {
+/* JS: width, height, left, top, margin */
+  border: 1px solid #888888;
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -50px 0 0 -50px;
+  overflow: hidden;
+}
+
+#microlightbox_titlebar {
+  padding: 0 4px 0 8px;
+  background-color: #999999;
+  color: #ffffff;
+  height: 28px;
+  overflow: hidden;
+}
+
+#microlightbox_titlebar #microlightbox_title {
+  overflow: hidden;
+  line-height: 26px;
+}
+
+#microlightbox_titlebar #microlightbox_close {
+  float: right;
+  color: #ffffff;
+  font-size: 27px;
+  font-weight: bold;
+  line-height: 27px;
+  font-family: Arial, monospace;
+}
+
+#microlightbox_titlebar #microlightbox_close:hover,
+#microlightbox_titlebar #microlightbox_close:focus {
+  color: #000000;
+  cursor: pointer;
+}
+
+#microlightbox_body {
+  background-color: #ffffff;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+}
+
+#microlightbox_body #microlightbox_title {
+  overflow: hidden;
+  text-align: center;
+}
+
+#microlightbox_image {
+  margin: 0 auto;
+}
