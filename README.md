@@ -77,5 +77,6 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
     microlightbox(document.getElementById("id"), {title:"text"});
     microlightbox("#id", {title:"text", titlePosition:"titlebar", overlayColor:''});
     microlightbox("<b>html code</b>", {minWidth:200});    
+    microlightbox("image.jpg", {type:"image"});
 </script>
 ```
