@@ -21,32 +21,37 @@
  * along with microlightbox. If not, see <http://www.gnu.org/licenses/>.
  *
  * @author KyberPrizrak (www.kyberprizrak.ru)
- * @version 1.0.1 - 2018.06.17 00:29:00 GMT+3
+ * @version 1.0.1 - 2018.06.17 14:19:00 GMT+3
  */
+
 (function() {
 
 /**
  * Текущие настройки активного popup
  * @struct
  * @type {!Object}
+ * @access private
  **/
  var options = {};
 
 /**
  * Старая ширина popup
  * @type {number}
+ * @access private
  **/
  var old_width = 0;
 
 /**
  * Старая высота popup
  * @type {number}
+ * @access private
  **/
  var old_height = 0;
 
 /**
  * Старое значение document.body.style.overflow
  * @type {string}
+ * @access private
  **/
  var old_body_style_overflow = '';
 
@@ -54,6 +59,7 @@
  * Старое значение style.display DOM-элемента
  * Используется только для type=='inline'
  * @type {*}
+ * @access private
  **/
  var old_target_style_display = 'none';
 
@@ -61,6 +67,7 @@
  * DOM-элемент c id=microlightbox_spoof
  * Используется только для type=='inline'
  * @type {?Node}
+ * @access private
  **/
  var obj_spoof = null;
 
@@ -68,6 +75,7 @@
  * DOM-элемент, который нужно показать внутри popup
  * Используется только для type=='inline'
  * @type {?Node}
+ * @access private
  **/
  var obj_target = null;
 
@@ -75,77 +83,92 @@
  * DOM-элемент c id=microlightbox_image
  * Используется только для type=='image'
  * @type {?Node}
+ * @access private
  **/
  var obj_image = null;
 
 /**
  * DOM-элемент c id=microlightbox_overlay
  * @type {?Node}
+ * @access private
  **/
  var obj_overlay = null;
 
 /**
  * DOM-элемент c id=microlightbox_window
  * @type {?Node}
+ * @access private
  **/
  var obj_window = null;
 
 /**
  * DOM-элемент c id=microlightbox_body
  * @type {?Node}
+ * @access private
  **/
  var obj_body = null;
 
 /**
  * DOM-элемент c id=microlightbox_content
  * @type {?Node}
+ * @access private
  **/
  var obj_content = null;
 
 /**
  * DOM-элемент c id=microlightbox_titlebar
  * @type {?Node}
+ * @access private
  **/
  var obj_titlebar = null;
 
 /**
  * DOM-элемент c id=microlightbox_title
  * @type {?Node}
+ * @access private
  **/
  var obj_title = null;
 
 /**
  * DOM-элемент c id=microlightbox_close
  * @type {?Node}
+ * @access private
  **/
  var obj_close = null;
 
 /**
  * Инициализирует microlightbox для элемента
- * elm может принимать следующие значения:
- * 1) DOM-елемент:
- *  a) <a href="image.jpg"> - при клике по ссылке будет открываться во вспылывающем окне ресайзеная картинка image.jpg
- *  b) <a href="#html_id"> - при клике по ссылке будет открываться всплывашка с HTML-кодом блока <div id="html_id">
- *  c) <img src="image.jpg"> - будет открыта всплывашка с ресайзеной картинкой, взятой из src.
- *  d) любой другой тег - будет открыт во всплывашке.
- * 2) строка:
- *  a) начинающаяся с символа "#" - id DOM-елемента. Поведение функции аналогично передаче DOM-елемента с указанным ID.
- *  b) начинающаяся с символа "." - название класса. Поведение функции аналогично вызову функции для каждого DOM-елемента.
- *  c) в других случаях - воспринимается как HTML-код, который должен быть отображен во всплывашке.
- * opt - объект, который может содержать следующие свойства:
- * type (string, 'auto') - Декларирует тип содержимого. Может принмать значения: 'auto', 'image', 'html' или 'inline'. Если 'auto' - определить автоматически.
- * title (string, '') - Строка, содержащая заловок всплывающиего окна;
- * titlePosition (string, 'auto') - позиция отображения title: 'titlebar', 'inside' или 'auto' (для image - используется inside, во всех остальных случаях - titlebar)
- * padding (integer, 10) - Пространство между контейнером microlightbox и контентом.
- * margin (integer, 20) - Пространство между областью просмотра и контейнером microlightbox.
- * minWidth (integer, 100) - Минимальная ширина контейнера microlightbox.
- * minHeight (integer, 100) - Минимальная высота контейнера microlightbox.
- * maxWidth (integer, 0) - Максимальная ширина контейнера microlightbox. Если 0 - игнорировать.
- * maxHeight (integer, 0) - Максимальная высота контейнера microlightbox. Если 0 - игнорировать.
- * overlayColor (string, 'rgba(0,0,0,0.7)') - Цвет фонового затемнения (значение для obj_overlay.style.backgroundColor).
+ *
+ * **elm**:
+ * 1. DOM-element:
+ *    * &lt;a href="image.jpg"&gt; - при клике по ссылке будет открываться во вспылывающем окне ресайзеная картинка image.jpg
+ *    * &lt;a href="#html_id"&gt; - при клике по ссылке будет открываться всплывашка с HTML-кодом блока <div id="html_id">
+ *    * &lt;img src="image.jpg"&gt; - будет открыта всплывашка с ресайзеной картинкой, взятой из src.
+ *    * любой другой тег - будет открыт во всплывашке.
+ * 2. string:
+ *    * начинающаяся с символа "#" - id DOM-елемента. Поведение функции аналогично передаче DOM-елемента с указанным ID.
+ *    * начинающаяся с символа "." - название класса. Поведение функции аналогично вызову функции для каждого DOM-елемента с этим классом.
+ *    * в других случаях - воспринимается как HTML-код, который должен быть отображен во всплывашке.
+ *
+ * **opt**: object {optionname1:value[, optionname2:value2]}
+ * ### Available options
+ * | Key           |  Type   | Default value     | Description      |
+ * | ------------- |:-------:|:-----------------:| :----------------|
+ * | type          | string  | 'auto'            | Декларирует тип содержимого. Может принмать значения: 'auto', 'image', 'html' или 'inline'. Если 'auto' - определить автоматически. |
+ * | title         | string  | ''                | Строка, содержащая заловок всплывающиего окна; |
+ * | titlePosition | string  | 'auto'            | позиция отображения title: 'titlebar', 'inside' или 'auto' (для image - используется inside, во всех остальных случаях - titlebar) |
+ * | padding       | integer | 10                | Пространство между контейнером microlightbox и контентом. |
+ * | margin        | integer | 20                | Пространство между областью просмотра и контейнером microlightbox. |
+ * | minWidth      | integer | 100               | Минимальная ширина контейнера microlightbox. |
+ * | minHeight     | integer | 100               | Минимальная высота контейнера microlightbox. |
+ * | maxWidth      | integer | 0                 | Максимальная ширина контейнера microlightbox. Если 0 - игнорировать. |
+ * | maxHeight     | integer | 0                 | Максимальная высота контейнера microlightbox. Если 0 - игнорировать. |
+ * | overlayColor  | string  | 'rgba(0,0,0,0.7)' | Цвет фонового затемнения (значение для microlightbox_overlay.style.backgroundColor). |
+ *
  * @param {Node|string} elm Элемент, для которого инициализируем microlightbox
  * @param {Object|undefined} opt Параметры microlightbox
  * @return {undefined}
+ * @access public
  **/
  function microlightbox(elm, opt)
  {
@@ -185,6 +208,7 @@
  * @param {Object|undefined} opt Параметры microlightbox
  * @param {boolean} is_click Открытие происходит по клику (в elm содержится атрибут href)
  * @return {undefined}
+ * @access private
  **/
  function microlightbox_open(elm, opt, is_click)
  {
@@ -284,6 +308,7 @@
 /**
  * Открыть overlay (экран ожидания открытия popup)
  * @return {undefined}
+ * @access private
  **/
  function microlightbox_overlay_show()
  {
@@ -305,6 +330,7 @@
  * Открыть popup
  * @param {Node|string} value Элемент, который показывается в popup
  * @return {undefined}
+ * @access private
  **/
  function microlightbox_window_show(value)
  {
@@ -373,6 +399,7 @@
 /**
  * Пересчитать размеры popup
  * @return {undefined}
+ * @access private
  **/
  function microlightbox_recalc()
  {
@@ -502,6 +529,7 @@
  * Произошел клик по overlay
  * @param {*} event Параметры события
  * @return {boolean|undefined}
+ * @access private
  **/
  function microlightbox_overlay_onclick(event)
  {
@@ -514,8 +542,9 @@
  }
 
 /**
- * Закрыть popup
- * @return {boolean|undefined}
+ * Close popup
+ * @return {false} Always false
+ * @access public
  **/
  function microlightbox_close()
  {

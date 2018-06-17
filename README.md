@@ -30,7 +30,7 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
 ```
 4) add class "microlightbox" to &lt;a&gt;:
 ```html
- <a class="microlightbox" href="...">
+    <a class="microlightbox" href="...">
 ```
 
 ## API & Options
@@ -51,7 +51,7 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
    * начинающаяся с символа "." - название класса. Поведение функции аналогично вызову функции для каждого DOM-елемента с этим классом.
    * в других случаях - воспринимается как HTML-код, который должен быть отображен во всплывашке.
 
-**opt**: {optionname1:value[, optionname2:value2]}
+**opt**: object {optionname1:value[, optionname2:value2]}
 
 ### Available options
 | Key           |  Type   | Default value     | Description      |
@@ -68,15 +68,15 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
 | overlayColor  | string  | 'rgba(0,0,0,0.7)' | Цвет фонового затемнения (значение для microlightbox_overlay.style.backgroundColor). |
 
  
- ## Examples
+## Examples
  
- ```js
+```js
 <script>
     microlightbox("#id");
     microlightbox(".classname");
     microlightbox(document.getElementById("id"), {title:"text"});
     microlightbox("#id", {title:"text", titlePosition:"titlebar", overlayColor:''});
-    microlightbox("<b>html code</b>", {minWidth:200});    
+    microlightbox("<b>html code</b>", {minWidth:200});
     microlightbox("image.jpg", {type:"image"});
 </script>
 ```
