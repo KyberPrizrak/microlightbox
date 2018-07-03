@@ -11,7 +11,7 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
 
 ## Quick start
 
-1) Copy *microlightbox.css* and *microlightbox.min.js*
+1) Copy *microlightbox.min.js* (5.5 kb) and *microlightbox.css* + *loading.gif* (3.5 kb)
 2) Add to &lt;head&gt;:
 
 ```html
