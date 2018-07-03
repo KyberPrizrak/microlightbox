@@ -21,7 +21,7 @@
  * along with microlightbox. If not, see <http://www.gnu.org/licenses/>.
  *
  * @author KyberPrizrak (www.kyberprizrak.ru)
- * @version 1.0.1 - 2018.06.17 14:19:00 GMT+3
+ * @version 1.0.2 - 2018.07.03 21:10:00 GMT+3
  */
 
 (function() {
@@ -152,18 +152,18 @@
  *
  * **opt**: object {optionname1:value[, optionname2:value2]}
  * ### Available options
- * | Key           |  Type   | Default value     | Description      |
- * | ------------- |:-------:|:-----------------:| :----------------|
- * | type          | string  | 'auto'            | Декларирует тип содержимого. Может принмать значения: 'auto', 'image', 'html' или 'inline'. Если 'auto' - определить автоматически. |
- * | title         | string  | ''                | Строка, содержащая заловок всплывающиего окна; |
- * | titlePosition | string  | 'auto'            | позиция отображения title: 'titlebar', 'inside' или 'auto' (для image - используется inside, во всех остальных случаях - titlebar) |
- * | padding       | integer | 10                | Пространство между контейнером microlightbox и контентом. |
- * | margin        | integer | 20                | Пространство между областью просмотра и контейнером microlightbox. |
- * | minWidth      | integer | 100               | Минимальная ширина контейнера microlightbox. |
- * | minHeight     | integer | 100               | Минимальная высота контейнера microlightbox. |
- * | maxWidth      | integer | 0                 | Максимальная ширина контейнера microlightbox. Если 0 - игнорировать. |
- * | maxHeight     | integer | 0                 | Максимальная высота контейнера microlightbox. Если 0 - игнорировать. |
- * | overlayColor  | string  | 'rgba(0,0,0,0.7)' | Цвет фонового затемнения (значение для microlightbox_overlay.style.backgroundColor). |
+ * | Key           |  Type        | Default value     | Description      |
+ * | ------------- |:------------:|:-----------------:| :----------------|
+ * | type          | string       | 'auto'            | Декларирует тип содержимого. Может принмать значения: 'auto', 'image', 'html' или 'inline'. Если 'auto' - определить автоматически. |
+ * | title         | string, null | null              | Строка, содержащая заловок всплывающиего окна; Если null - попытаться прочитать из атрибута title |
+ * | titlePosition | string       | 'auto'            | позиция отображения title: 'titlebar', 'inside' или 'auto' (для image - используется inside, во всех остальных случаях - titlebar) |
+ * | padding       | integer      | 10                | Пространство между контейнером microlightbox и контентом. |
+ * | margin        | integer      | 20                | Пространство между областью просмотра и контейнером microlightbox. |
+ * | minWidth      | integer      | 100               | Минимальная ширина контейнера microlightbox. |
+ * | minHeight     | integer      | 100               | Минимальная высота контейнера microlightbox. |
+ * | maxWidth      | integer      | 0                 | Максимальная ширина контейнера microlightbox. Если 0 - игнорировать. |
+ * | maxHeight     | integer      | 0                 | Максимальная высота контейнера microlightbox. Если 0 - игнорировать. |
+ * | overlayColor  | string       | 'rgba(0,0,0,0.7)' | Цвет фонового затемнения (значение для microlightbox_overlay.style.backgroundColor). |
  *
  * @param {Node|string} elm Элемент, для которого инициализируем microlightbox
  * @param {Object|undefined} opt Параметры microlightbox
@@ -172,33 +172,50 @@
  **/
  function microlightbox(elm, opt)
  {
-   if(!elm) {return;}
+   try{
+     if(!elm) {return;}
 
-   if((typeof(elm) === 'string') && (elm.substr(0, 1) == '#'))
-   {
-     elm = document.getElementById(elm.substr(1));
-   }
-   else if((typeof(elm) === 'string') && (elm.substr(0, 1) == '.'))
-   {
-     var elements;
-     try{
-       elements = document.getElementsByClassName(elm.substr(1));
-     }catch(e){elements = document.querySelectorAll(elm);}
-
-     for(var i = 0; i < elements.length; i++)
+     if((typeof(elm) === 'string') && (elm.substr(0, 1) == '#'))
      {
-       microlightbox(elements[i], opt);
+       elm = document.getElementById(elm.substr(1));
      }
-     return;
-   }
+     else if((typeof(elm) === 'string') && (elm.substr(0, 1) == '.'))
+     {
+       var elements;
+       try{
+         elements = document.getElementsByClassName(elm.substr(1));
+       }catch(e){elements = document.querySelectorAll(elm);}
 
-   if((typeof(elm) === 'object') && (elm.tagName == 'A'))
-   {
-     elm.onclick = function(){microlightbox_open(elm.getAttribute('href'), opt, true);return false;}
+       for(var i = 0; i < elements.length; i++)
+       {
+         microlightbox(elements[i], opt);
+       }
+       return;
+     }
+
+     if(typeof(elm) === 'object')
+     {
+       if(typeof(opt) !== 'object')
+       {
+         opt = {};
+       }
+       if(typeof(opt['title']) !== 'string')
+       {
+         opt['title'] = elm.getAttribute('title');
+       }
+     }
+
+     if((typeof(elm) === 'object') && (elm.tagName == 'A'))
+     {
+       elm.onclick = function(){microlightbox_open(elm.getAttribute('href'), opt, true);return false;}
+     }
+     else
+     {
+       microlightbox_open(elm, opt, false);
+     }
    }
-   else
+   catch(e)
    {
-     microlightbox_open(elm, opt, false);
    }
  }
 

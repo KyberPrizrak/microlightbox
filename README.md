@@ -54,18 +54,18 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
 **opt**: object {optionname1:value[, optionname2:value2]}
 
 ### Available options
-| Key           |  Type   | Default value     | Description      |
-| ------------- |:-------:|:-----------------:| :----------------|
-| type          | string  | 'auto'            | Декларирует тип содержимого. Может принмать значения: 'auto', 'image', 'html' или 'inline'. Если 'auto' - определить автоматически. |
-| title         | string  | ''                | Строка, содержащая заловок всплывающиего окна; |
-| titlePosition | string  | 'auto'            | позиция отображения title: 'titlebar', 'inside' или 'auto' (для image - используется inside, во всех остальных случаях - titlebar) |
-| padding       | integer | 10                | Пространство между контейнером microlightbox и контентом. |
-| margin        | integer | 20                | Пространство между областью просмотра и контейнером microlightbox. |
-| minWidth      | integer | 100               | Минимальная ширина контейнера microlightbox. |
-| minHeight     | integer | 100               | Минимальная высота контейнера microlightbox. |
-| maxWidth      | integer | 0                 | Максимальная ширина контейнера microlightbox. Если 0 - игнорировать. |
-| maxHeight     | integer | 0                 | Максимальная высота контейнера microlightbox. Если 0 - игнорировать. |
-| overlayColor  | string  | 'rgba(0,0,0,0.7)' | Цвет фонового затемнения (значение для microlightbox_overlay.style.backgroundColor). |
+| Key           |  Type        | Default value     | Description      |
+| ------------- |:------------:|:-----------------:| :----------------|
+| type          | string       | 'auto'            | Декларирует тип содержимого. Может принмать значения: 'auto', 'image', 'html' или 'inline'. Если 'auto' - определить автоматически. |
+| title         | string, null | null              | Строка, содержащая заловок всплывающиего окна; Если null - попытаться прочитать из атрибута title |
+| titlePosition | string       | 'auto'            | позиция отображения title: 'titlebar', 'inside' или 'auto' (для image - используется inside, во всех остальных случаях - titlebar) |
+| padding       | integer      | 10                | Пространство между контейнером microlightbox и контентом. |
+| margin        | integer      | 20                | Пространство между областью просмотра и контейнером microlightbox. |
+| minWidth      | integer      | 100               | Минимальная ширина контейнера microlightbox. |
+| minHeight     | integer      | 100               | Минимальная высота контейнера microlightbox. |
+| maxWidth      | integer      | 0                 | Максимальная ширина контейнера microlightbox. Если 0 - игнорировать. |
+| maxHeight     | integer      | 0                 | Максимальная высота контейнера microlightbox. Если 0 - игнорировать. |
+| overlayColor  | string       | 'rgba(0,0,0,0.7)' | Цвет фонового затемнения (значение для microlightbox_overlay.style.backgroundColor). |
 
  
 ## Examples
