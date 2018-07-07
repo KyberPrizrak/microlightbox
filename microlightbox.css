@@ -120,3 +120,7 @@
 #microlightbox_image {
   margin: 0 auto;
 }
+
+#microlightbox_content {
+  float: left;
+}
