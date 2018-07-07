@@ -115,6 +115,7 @@
 #microlightbox_body #microlightbox_title {
   overflow: hidden;
   text-align: center;
+  clear:left;
 }
 
 #microlightbox_image {
