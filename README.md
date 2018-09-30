@@ -65,6 +65,7 @@ microlightbox supports all major browsers including Internet Explorer 8 and abov
 | minHeight     | integer      | 100               | Минимальная высота контейнера microlightbox. |
 | maxWidth      | integer      | 0                 | Максимальная ширина контейнера microlightbox. Если 0 - игнорировать. |
 | maxHeight     | integer      | 0                 | Максимальная высота контейнера microlightbox. Если 0 - игнорировать. |
+| width         | integer      | 0                 | Ширина контейнера microlightbox по умолчанию. Если 0 - игнорировать. Данный параметр игнорируется для изображений. |
 | overlayColor  | string       | 'rgba(0,0,0,0.7)' | Цвет фонового затемнения (значение для microlightbox_overlay.style.backgroundColor). |
 
  

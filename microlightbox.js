@@ -21,7 +21,7 @@
  * along with microlightbox. If not, see <http://www.gnu.org/licenses/>.
  *
  * @author KyberPrizrak (www.kyberprizrak.ru)
- * @version 1.0.2 - 2018.07.03 21:10:00 GMT+3
+ * @version 1.0.3 - 2018.09.30 21:10:00 GMT+3
  */
 
 (function() {
@@ -163,6 +163,7 @@
  * | minHeight     | integer      | 100               | Минимальная высота контейнера microlightbox. |
  * | maxWidth      | integer      | 0                 | Максимальная ширина контейнера microlightbox. Если 0 - игнорировать. |
  * | maxHeight     | integer      | 0                 | Максимальная высота контейнера microlightbox. Если 0 - игнорировать. |
+ * | width         | integer      | 0                 | Ширина контейнера microlightbox по умолчанию. Если 0 - игнорировать. Данный параметр игнорируется для изображений. |
  * | overlayColor  | string       | 'rgba(0,0,0,0.7)' | Цвет фонового затемнения (значение для microlightbox_overlay.style.backgroundColor). |
  *
  * @param {Node|string} elm Элемент, для которого инициализируем microlightbox
@@ -239,6 +240,7 @@
      options.minHeight = 100;
      options.maxWidth = 0;
      options.maxHeight = 0;
+     options.width = 0;
      options.overlayColor = 'rgba(0,0,0,0.7)';
      options.imgWidth = 0;//only for type=='image'
      options.imgHeight = 0;//only for type=='image'
@@ -254,6 +256,7 @@
        if(opt['minHeight']>=0) {options.minHeight = opt['minHeight'];}
        if(opt['maxWidth']>=0) {options.maxWidth = opt['maxWidth'];}
        if(opt['maxHeight']>=0) {options.maxHeight = opt['maxHeight'];}
+       if(opt['width']>=0) {options.width = opt['width'];}
        if(typeof(opt['overlayColor']) === 'string') {options.overlayColor = opt['overlayColor'];}
      }
     
@@ -483,6 +486,14 @@
 
          content_width = Math.max(content_min_width, content_real_width);
          content_height = Math.max(content_min_height, content_real_height);
+         if(options.width > 0)
+         {
+           var content_max_width_optimal = Math.min(options.width, ((overlay_width - (options.margin * 2)) - window_borders_width));
+           if((content_max_width_optimal >= content_min_width) && (content_max_width_optimal <= content_max_width))
+           {
+             content_width = content_max_width_optimal;
+           }
+         }
          if(old_width == 0)//calc height only after set width
          {
            window_max_height = Math.max(100, window_min_height);
